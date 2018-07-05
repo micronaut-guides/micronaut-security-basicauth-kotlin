@@ -1,0 +1,18 @@
+include::{commondir}/common-spek.adoc[]
+
+Create a test which verifies the user authentication flow via Basic Auth.
+
+[source,java]
+.src/test/kotlin/example/micronaut/BasicAuthSpec.kt
+----
+include::{sourceDir}/src/test/kotlin/example/micronaut/BasicAuthSpec.kt[]
+}
+----
+
+<1> To run the application from a unit test you can use the http://docs.micronaut.io/snapshot/api/io/micronaut/runtime/server/EmbeddedServer.html[EmbeddedServer] interface
+<2> Register a `RxClient` bean in the application context and point it to the embedded server URL. The `EmbeddedServer` interface provides the URL of the server under test which runs on a random port.
+<3> Creating HTTP Requests is easy thanks to Micronaut's fluid API.
+<4> If you attempt to access a secured endpoint without authentication, 401 is returned
+<5> By using `basicAuth` method, you populate the `Authorization` header with user-id:password pairs, encoded using Base64.
+<6> Micronaut's `HttpClient` simplifies parsing HTTP response payload to Java objects. In this example, we parse the response to `String`.
+<7> Use `.body()` to retrieve the parsed payload.

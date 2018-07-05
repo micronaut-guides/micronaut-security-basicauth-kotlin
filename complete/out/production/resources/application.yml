@@ -1,0 +1,14 @@
+micronaut:
+    application:
+        name: complete
+#Uncomment to set server port
+#    server:
+#        port: 8080
+#tag::security[]
+micronaut:
+  security:
+    enabled: true # <1>
+    endpoints:
+      login:
+        enabled: true  # <2>
+#end::security[]
