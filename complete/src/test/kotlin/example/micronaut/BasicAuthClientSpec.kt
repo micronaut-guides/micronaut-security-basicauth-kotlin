@@ -3,9 +3,8 @@ package example.micronaut
 import io.micronaut.context.ApplicationContext
 import io.micronaut.http.client.exceptions.HttpClientResponseException
 import io.micronaut.runtime.server.EmbeddedServer
-import org.jetbrains.spek.api.Spek
-import org.jetbrains.spek.api.dsl.describe
-import org.jetbrains.spek.api.dsl.on
+import org.spekframework.spek2.Spek
+import org.spekframework.spek2.style.specification.describe
 import java.util.Base64
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -14,7 +13,7 @@ class BasicAuthClientSpec: Spek({
     describe("Verify HTTP Basic Auth works") {
 
         val embeddedServer : EmbeddedServer = ApplicationContext.run(EmbeddedServer::class.java) // <1>
-        on("Accessing a secured URL using a @Client which supplies basic auth in Authorization header") {
+        it("Accessing a secured URL using a @Client which supplies basic auth in Authorization header") {
             val credsEncoded: String = Base64.getEncoder().encodeToString("sherlock:password".byteInputStream().readBytes())
 
             var exceptionThrown = false

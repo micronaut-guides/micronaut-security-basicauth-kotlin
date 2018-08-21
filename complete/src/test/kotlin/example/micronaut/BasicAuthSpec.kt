@@ -7,9 +7,8 @@ import io.micronaut.http.HttpStatus
 import io.micronaut.http.client.RxHttpClient
 import io.micronaut.http.client.exceptions.HttpClientResponseException
 import io.micronaut.runtime.server.EmbeddedServer
-import org.jetbrains.spek.api.Spek
-import org.jetbrains.spek.api.dsl.describe
-import org.jetbrains.spek.api.dsl.on
+import org.spekframework.spek2.Spek
+import org.spekframework.spek2.style.specification.describe
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
@@ -18,7 +17,7 @@ class BasicAuthSpec: Spek({
 
         var embeddedServer : EmbeddedServer = ApplicationContext.run(EmbeddedServer::class.java) // <1>
         var client : RxHttpClient = RxHttpClient.create(embeddedServer.url) // <2>
-        on("Accessing a secured URL without authenticating") {
+        it("Accessing a secured URL without authenticating") {
             var exceptionThrown = false
             try {
                 val request = HttpRequest.GET<Any>("/")
@@ -28,7 +27,7 @@ class BasicAuthSpec: Spek({
             }
             assertTrue(exceptionThrown)
         }
-        on("If a secured URL is accessed with Basic Auth, it can be accessed") {
+        it("If a secured URL is accessed with Basic Auth, it can be accessed") {
                 val request = HttpRequest.GET<Any>("/").basicAuth("sherlock", "password")  // <5>
                 val rsp : HttpResponse<String> = client.toBlocking().exchange(request, String::class.java)  // <6>
 
