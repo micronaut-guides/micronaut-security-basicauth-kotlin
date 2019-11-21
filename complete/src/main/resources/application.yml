@@ -1,9 +1,7 @@
 micronaut:
-    application:
-        name: complete
-#Uncomment to set server port
-#    server:
-#        port: 8080
+  application:
+    name: complete
+---
 #tag::security[]
 micronaut:
   security:
