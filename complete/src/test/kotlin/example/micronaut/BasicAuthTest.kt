@@ -4,7 +4,6 @@ import io.micronaut.http.HttpRequest
 import io.micronaut.http.HttpStatus
 import io.micronaut.http.MediaType
 import io.micronaut.http.client.RxHttpClient
-import io.micronaut.http.client.annotation.Client
 import io.micronaut.http.client.exceptions.HttpClientResponseException
 import io.micronaut.runtime.server.EmbeddedServer
 import io.micronaut.test.annotation.MicronautTest
@@ -17,12 +16,12 @@ import javax.inject.Inject
 class BasicAuthTest {
 
     @Inject
-    @Client("/")
-    lateinit var client : RxHttpClient // <2>
+    lateinit var embeddedServer: EmbeddedServer
 
-
-    //@Test
+    @Test
     fun verifyHttpBasicAuthWorks() {
+        val client : RxHttpClient = embeddedServer.applicationContext.createBean(RxHttpClient::class.java, embeddedServer.url) // <2>
+
         //when: 'Accessing a secured URL without authenticating'
         val e = Executable { client.toBlocking().exchange<Any, Any>(HttpRequest.GET<Any>("/").accept(MediaType.TEXT_PLAIN)) } // <3>
 
