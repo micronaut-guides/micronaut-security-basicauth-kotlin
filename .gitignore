@@ -4,3 +4,4 @@ build
 *.class
 *.iml
 out/complete
+.DS_Store

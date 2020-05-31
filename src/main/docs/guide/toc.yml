@@ -5,7 +5,6 @@ gettingStarted:
 writingTheApp:
   title: Writing the Application
   dependency: Security Dependency
-  configuration: Configuration
   authenticationProvider: Authentication Provider
   controller: Controllers
 tests:

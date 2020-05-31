@@ -1,11 +1,9 @@
-include::{commondir}/common-spek2.adoc[]
-
 Create a test which verifies the user authentication flow via Basic Auth.
 
 [source,kotlin]
-.src/test/kotlin/example/micronaut/BasicAuthSpec.kt
+.src/test/kotlin/example/micronaut/BasicAuthTest.kt
 ----
-include::{sourceDir}/src/test/kotlin/example/micronaut/BasicAuthSpec.kt[]
+include::{sourceDir}/src/test/kotlin/example/micronaut/BasicAuthTest.kt[]
 }
 ----
 
