@@ -19,10 +19,10 @@ class AuthenticationProviderUserPassword : AuthenticationProvider {
         return Flowable.create({ emitter: FlowableEmitter<AuthenticationResponse> ->
             if (authenticationRequest.identity == "sherlock" && authenticationRequest.secret == "password") {
                 emitter.onNext(UserDetails(authenticationRequest.identity as String, ArrayList()))
+                emitter.onComplete()
             } else {
                 emitter.onError(AuthenticationException(AuthenticationFailed()))
             }
-            emitter.onComplete()
         }, BackpressureStrategy.ERROR)
     }
 }

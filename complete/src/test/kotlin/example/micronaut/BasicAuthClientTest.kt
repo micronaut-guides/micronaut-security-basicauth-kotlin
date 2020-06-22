@@ -1,9 +1,9 @@
 package example.micronaut
 
 import io.micronaut.test.annotation.MicronautTest
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import java.util.*
+import java.util.Base64
 import javax.inject.Inject
 
 @MicronautTest // <1>
@@ -16,6 +16,6 @@ class BasicAuthClientTest {
     fun verifyBasicAuthWorks() {
         val credsEncoded = Base64.getEncoder().encodeToString("sherlock:password".toByteArray())
         val rsp = appClient.home("Basic $credsEncoded")
-        Assertions.assertEquals(rsp, "sherlock")
+        assertEquals(rsp, "sherlock")
     }
 }
